@@ -1,0 +1,18 @@
+{
+  "name": "payroll-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-stringify": "^6.5.1",
+    "dotenv": "^17.2.3",
+    "express": "^4.19.2",
+    "mongoose": "^9.1.3",
+    "zod": "^3.23.8"
+  }
+}
