@@ -26,10 +26,11 @@ const Page = styled.div`
 `;
 
 const Shell = styled.div`
-  height: 100%;
+  height: 100vh;
   display: flex;
-  align-items: center;
-    justify-content: space-between; /* ✅ THIS is the key */
+  overflow: hidden;
+  /* align-items: center; */
+    justify-content: space-between; 
 
   gap: 40px;
   padding: 48px 56px;
@@ -177,7 +178,7 @@ const FeatureText = styled.div`
 
 const RightPanel = styled.div`
   width: 420px;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 200px);
   border-radius: 22px;
   background: rgba(255,255,255,0.94);
   color: #111827;
