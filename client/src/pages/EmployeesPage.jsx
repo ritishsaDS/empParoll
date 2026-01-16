@@ -204,10 +204,7 @@ export default function EmployeesPage() {
               <div className="pro-stat-label">Total Employees</div>
               <div className="pro-stat-value">{employees.length}</div>
             </div>
-            <div className="pro-stat">
-              <div className="pro-stat-label">Showing</div>
-              <div className="pro-stat-value">{filtered.length}</div>
-            </div>
+          
           </div>
         </div>
 
@@ -318,14 +315,14 @@ export default function EmployeesPage() {
           </table>
         </div>
       )}
-
+<div style={{ height: 14 }} />
       {/* Modal */}
       {open ? (
-       <Modal
-  title="Add Employee"
-  subtitle="Enter employee details. Salary fields affect payroll calculations."
-  onClose={() => setOpen(false)}
->
+        <Modal
+          title={editing ? "Edit Employee" : "Add Employee"}
+          subtitle="Enter employee details. Salary fields affect payroll calculations."
+          onClose={() => setOpen(false)}
+        >
          
 
           <div className="grid2">

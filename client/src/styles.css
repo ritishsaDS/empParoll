@@ -210,3 +210,27 @@ small.muted{ opacity: .75; }
 .pro-kpi-value { margin-top: 6px; font-size: 18px; font-weight: 900; }
 
 .pro-tip { margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.72); }
+
+/* Modal overlay scrollable - visible scrollbar on full screen */
+.modal-overlay-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.1);
+}
+
+.modal-overlay-scrollable::-webkit-scrollbar {
+  width: 12px;
+}
+
+.modal-overlay-scrollable::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-overlay-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.modal-overlay-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.8);
+}

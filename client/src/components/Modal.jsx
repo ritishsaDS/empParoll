@@ -1,28 +1,26 @@
 import React, { useEffect } from "react";
 
 export default function Modal({ title, subtitle = "Fill details and save.", children, onClose }) {
-  // Close on ESC + lock body scroll
+  // Close on ESC
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") onClose?.();
     };
     document.addEventListener("keydown", onKeyDown);
 
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = prevOverflow;
     };
   }, [onClose]);
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-start justify-center p-4 modal-overlay-scrollable"
       style={{
         background: "rgba(0,0,0,0.65)",
         backdropFilter: "blur(6px)",
+        overflowY: "auto",
+        overflowX: "hidden",
       }}
       onClick={onClose}
       role="dialog"
@@ -36,6 +34,11 @@ export default function Modal({ title, subtitle = "Fill details and save.", chil
           border: "1px solid rgba(255,255,255,0.14)",
           boxShadow: "0 30px 90px rgba(0,0,0,0.45)",
           overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          margin: "auto",
+          minHeight: "min-content",
+          width: "100%",
         }}
       >
         {/* Header */}
@@ -48,6 +51,7 @@ export default function Modal({ title, subtitle = "Fill details and save.", chil
             gap: 12,
             borderBottom: "1px solid rgba(255,255,255,0.10)",
             background: "rgba(255,255,255,0.04)",
+            flexShrink: 0,
           }}
         >
           <div>
@@ -76,7 +80,13 @@ export default function Modal({ title, subtitle = "Fill details and save.", chil
         </div>
 
         {/* Body */}
-        <div style={{ padding: "16px 18px" }}>{children}</div>
+        <div 
+          style={{ 
+            padding: "16px 18px",
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

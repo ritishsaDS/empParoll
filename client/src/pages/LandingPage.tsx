@@ -177,7 +177,7 @@ const FeatureText = styled.div`
 
 const RightPanel = styled.div`
   width: 420px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 50px);
   border-radius: 22px;
   background: rgba(255,255,255,0.94);
   color: #111827;
