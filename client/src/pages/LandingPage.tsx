@@ -2,6 +2,8 @@ import styled from "styled-components";
 import MainLogo from "../assets/images.jpg";
 import Logo from "../assets/progression.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { get } from "mongoose";
 
 type Size = string | number;
 
@@ -276,8 +278,21 @@ const StatValue = styled.div`
 `;
 
 export default function LandingPage() {
+  const [login, isLogin] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userRaw = localStorage.getItem("user");
 
+    if (!isLoggedIn || !userRaw) {
+    isLogin(false);
+      return;
+    }
+
+    const user = JSON.parse(userRaw);
+    console.log("Logged-in user:", user);
+     isLogin(true);
+  }, [navigate]);
   return (
     <Page>
       <Shell>
@@ -385,3 +400,7 @@ export default function LandingPage() {
     </Page>
   );
 }
+function getSessionUser() {
+  throw new Error("Function not implemented.");
+}
+

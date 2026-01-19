@@ -84,7 +84,7 @@ export default function ReportsPage(){
             {runs.length === 0 && <option value="">No runs</option>}
             {runs.map(r => (
               <option key={r._id} value={r._id}>
-                {monthName(r.month)} {r.year} 
+                {monthName(r.month)} {r.year} (…{String(r._id).slice(-6)})
               </option>
             ))}
           </select>

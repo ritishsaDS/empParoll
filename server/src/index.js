@@ -9,7 +9,7 @@ import { ENV } from "./config/env.js";
 import Employee from "./models/Employee.js";
 import PayrollRun from "./models/PayrollRun.js";
 import PayrollItem from "./models/PayrollItem.js";
-
+import User from "./config/schema/UserSchema.cjs"; // adjust path if needed
 await connectDB();
 
 const app = express();
@@ -67,6 +67,7 @@ app.delete("/api/employees/:id", async (req, res) => {
 // ============================
 app.post("/api/payroll/run", async (req, res) => {
   const parsed = payrollRunSchema.safeParse(req.body);
+  console.log("req.body:", req.body);
   if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
 
   const { month, year } = parsed.data;
@@ -204,6 +205,74 @@ app.get("/api/reports/summary", async (req, res) => {
   const totals = totalsAgg[0] || { employeeCount: 0, totalGross: 0, totalDeductions: 0, totalNet: 0 };
 
   res.json({ run, totals, byDepartment });
+});
+
+
+
+app.post("/api/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: "Email and password are required" });
+    }
+
+    const existingUser = await User.findOne({ username });
+
+    if (!existingUser) {
+
+      return res.status(401).json({ error: "Invalid email" });
+    }
+
+    // TEMP check (plain text) - replace with bcrypt later
+    if (existingUser.password !== password) {
+
+
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    return res.status(200).json({
+      message: "Login successful",
+      user: {
+        _id: existingUser._id,
+        email: existingUser.email,
+        username: existingUser.username,
+      },
+    });
+
+  } catch (err) {
+    console.error("Login error:", err);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+app.post("/api/signup", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    const already = await User.findOne({ email });
+    if (already) {
+      return res.status(409).json({ error: "Email already exists" });
+    }
+
+    const created = await User.create({ username, email, password });
+
+    return res.status(201).json({
+      message: "Signup successful",
+      user: {
+        _id: created._id,
+        username: created.username,
+        email: created.username,
+        password: created.password,
+      },
+    });
+  } catch (err) {
+    console.error("Signup error:", err);
+    return res.status(500).json({ error: "Server error" });
+  }
 });
 
 app.get("/api/reports/run/:id.csv", async (req, res) => {

@@ -177,6 +177,7 @@ export default function EmployeesPage() {
     if (!confirm(`Delete ${emp.name}?`)) return;
     try {
       await api.delete(`/employees/${emp._id}`);
+      
       setToast("Deleted");
       await load();
     } catch {
