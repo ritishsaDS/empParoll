@@ -16,7 +16,7 @@ const toCssSize = (v?: Size) =>
   v === undefined ? undefined : typeof v === "number" ? `${v}px` : v;
 
 const Page = styled.div`
-  height: 100vh;
+  height: calc(100vh - 100px);
   width: 100vw;
   overflow: hidden;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -28,7 +28,7 @@ const Page = styled.div`
 `;
 
 const Shell = styled.div`
-  height: 100vh;
+  height: calc(100vh - 100px);
   display: flex;
   overflow: hidden;
   /* align-items: center; */
