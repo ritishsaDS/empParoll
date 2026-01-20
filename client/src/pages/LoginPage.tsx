@@ -27,7 +27,14 @@ const LoginContent = styled.div`
   justify-content: center;
   padding: 48px 20px;
 `;
-
+const TitleText=styled.span`
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-left: 20px;
+  
+  display: block;
+`;
 const Card = styled.div`
   width: 560px;
   max-width: 100%;
@@ -117,6 +124,7 @@ const Input = styled.input`
 const PasswordWrapper = styled.div`
   position: relative;
     width: 90%;
+
 `;
 
 const PasswordInput = styled(Input)`
@@ -127,7 +135,7 @@ const PasswordInput = styled(Input)`
 const IconButton = styled.button`
   position: absolute;
   top: 50%;
-  right: 12px;
+  right: -16px;
   transform: translateY(-50%);
 
   width: 34px;
@@ -160,12 +168,11 @@ const Button = styled.button`
   border-radius: 12px;
   border: none;
   cursor: pointer;
-
   background: linear-gradient(135deg, #7b6cff, #4b53c7);
   color: #fff;
   font-weight: 800;
   font-size: 15px;
-
+  width: 90%;
   &:hover {
     opacity: 0.95;
   }
@@ -251,7 +258,9 @@ export default function LoginPage() {
 
   return (
     <Shell>
+       <TitleText>Welcome Back!</TitleText>
       <LoginContent>
+     
         <Card>
           <HeaderRow>
             <Badge>🔐</Badge>
@@ -323,6 +332,7 @@ export default function LoginPage() {
             </FooterRow>
           </Form>
         </Card>
+        
       </LoginContent>
     </Shell>
   );
