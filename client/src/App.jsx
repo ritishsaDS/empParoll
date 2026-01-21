@@ -13,6 +13,8 @@ import PayrollPage from "./pages/PayrollPage.jsx";
 import ReportsPage from "./pages/ReportsPage.jsx";
 import EmployeesPage from "./pages/EmployeesPage.jsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import DashboardPage  from "./pages/DashboardPage.tsx";
+
 
 import Logo from "./assets/progression.png";
 
@@ -56,7 +58,8 @@ export default function App() {
         </div>
 
         <div style={{ display: "flex", gap: 6 }}>
-          <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
+        
+          <NavLink to="/dash" className={({ isActive }) => (isActive ? "active" : "")}>
             Dashboard
           </NavLink>
 
@@ -105,7 +108,10 @@ export default function App() {
             path="/dashboard"
             element={<LandingPage />}
           />
-
+  <Route
+            path="/dash"
+            element={ <DashboardPage /> }
+          />
           <Route
             path="/employees"
             element={isLoggedIn ? <EmployeesPage /> : <Navigate to="/login" replace />}
@@ -114,6 +120,7 @@ export default function App() {
             path="/payroll"
             element={isLoggedIn ? <PayrollPage /> : <Navigate to="/login" replace />}
           />
+            
           <Route
             path="/reports"
             element={isLoggedIn ? <ReportsPage /> : <Navigate to="/login" replace />}

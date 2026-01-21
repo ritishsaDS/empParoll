@@ -3,7 +3,6 @@ import MainLogo from "../assets/images.jpg";
 import Logo from "../assets/progression.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { get } from "mongoose";
 
 type Size = string | number;
 
