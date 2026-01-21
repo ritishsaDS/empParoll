@@ -106,7 +106,7 @@ export default function App() {
 
           <Route
             path="/dashboard"
-            element={<LandingPage />}
+            element={<DashboardPage />}
           />
   <Route
             path="/dash"
